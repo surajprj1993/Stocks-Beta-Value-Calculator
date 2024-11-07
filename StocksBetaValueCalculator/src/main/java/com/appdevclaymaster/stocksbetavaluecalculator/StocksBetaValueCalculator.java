@@ -12,7 +12,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 /**
  *
  * @author Suraj Prajapati (Claymaster)
@@ -45,7 +44,6 @@ public class StocksBetaValueCalculator {
                 }
                 //System.out.println("File " + ohlcFolder + listOfFiles[i].getName());
                 String stockFilePath = ohlcFolder + listOfFiles[i].getName();
-
                 List<OHLC> stockData = readCSV(stockFilePath);
 
                 double[] stockReturns = calculateReturns(stockData);
