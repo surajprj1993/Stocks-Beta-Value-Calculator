@@ -9,6 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  *
@@ -18,13 +21,14 @@ public class StocksBetaValueCalculator {
 
     //Set the no of days data to be used to calculate beta value
     static int periodForBetaCalculation = 45;
+    static final Logger logger = LogManager.getLogger(StocksBetaValueCalculator.class);
 
     public static void main(String[] args) {
 
         //Load Market Index data 
         String stockOhlcFilePath = "src\\main\\resources\\daily_ohlc_data\\NIFTY.csv";
         List<OHLC> marketData = readCSV(stockOhlcFilePath);
-        System.out.println("No. of days in list is " + marketData.size());
+        logger.info("No. of days in list is " + marketData.size());
 
         //Load data for each stock
         String ohlcFolder = "src\\main\\resources\\daily_ohlc_data\\";
@@ -76,7 +80,7 @@ public class StocksBetaValueCalculator {
             e.printStackTrace();
         }
 
-        return ohlcList.subList(ohlcList.size()-periodForBetaCalculation, ohlcList.size()-1);
+        return ohlcList.subList(ohlcList.size() - periodForBetaCalculation, ohlcList.size() - 1);
     }
 
     public static double[] calculateReturns(List<OHLC> ohlcList) {
@@ -119,4 +123,3 @@ public class StocksBetaValueCalculator {
         return sum / (returns.length - 1);
     }
 }
-
